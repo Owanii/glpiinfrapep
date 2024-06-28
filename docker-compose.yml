@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  # GLPI Container
+  glpi:
+    image: diouxx/glpi
+    ports:
+      - "80:80"  # Port de GLPI exposé sur le port 80 de l'hôte
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /var/www/html/glpi/:/var/www/html/glpi
+      - /etc/crontab:/etc/crontab/
+      - /etc/apache2:/etc/apache2
+      - /usr/bin/php8.3:/usr/bin/php8.3
+    environment:
+      GLPI_DB_HOST: 10.21.1.45
+      GLPI_DB_NAME: glpi
+      GLPI_DB_USER: glpiuser
+      GLPI_DB_PASSWORD: Alfa!SQL21
+      TIMEZONE: Europe/Brussels
+      GLPI_NETWORK_REGISTRATION_KEY: eyJzdWJzY3JpcHRpb24iOjY3NTYxLCJyIjo2OTUyNDg5MjUwOTIyOTQzMDkxLCJzaWduYXR1cmUiOiJBQkM1ZlBCNjQxZG8rNlBaVmcrd2dTelJTYkcrV3FBc3J0K3VYdnhzUVpVUzcyS1Y2Y2VvbnpyQXBVTXdNNDRtQ2IrXC9PaU9sbnpPYmUrT1FjelJhTWpqM090NWZ3VG04QTI1M0xnSHB3U05CQVdxdVBaMFArSHNhRnc5UGR2Wk0yOXRYQjBQclhVWGtWT3ZDUFY5RVdXcXZnMHZ0M2drQk12Y1FSXC9BTExoMitvNnJ1bG5DTDFXYkxhaVdLS0VaZ0ZpZCtabFNVbWpaWDNBQUlDZElPRzVIRFRjSVhUU1B1d3J2SFwvekR3emEwVFZFUVJpUHpoQ0xLSkVPQ2ljTERWRmVwSHZldmZxR3hvYVBtbDRHZm1DQVBpaElGV1wvUSsxMUJjWU9WRVFGS2FwcFQ5bnRWdDdZdFBVT0tSelk2R2NOM0hMa3FrUkZVemI0a2JIMWc9PSJ9
+    restart: always
+  #web:
+   # image: shinsenter/phpfpm-apache:latest
+   # volumes:
+     # - ./pepcbfc.crt:/etc/ssl/site/server.crt
+      #- ./pepcbfc.key:/etc/apache2/ssl.crt/server.key
